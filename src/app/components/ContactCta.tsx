@@ -9,7 +9,7 @@ export default function ContactCta({ heading = '상담은 전화 한 통으로 �
         <div className="min-w-0 md:flex-1">
           <h2 className="text-2xl font-bold">{heading}</h2>
           <p className="mt-2 text-blue-100">
-            학년과 학교, 지금 성적을 알려 주시면 아이에게 맞는 반을 안내해 드립니다. 수업 중이면 문자를 남겨 주세요.
+            수업 중인 경우가 많아 문자 남겨주시면 연락드리겠습니다.
           </p>
         </div>
         {/* 전화번호·버튼은 줄바꿈 없이 한 줄 */}
