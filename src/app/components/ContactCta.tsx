@@ -6,17 +6,18 @@ export default function ContactCta({ heading = '상담은 전화 한 통으로 �
   return (
     <section className="bg-brand-dark text-white">
       <div className="max-w-5xl mx-auto px-4 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div>
+        <div className="min-w-0 md:flex-1">
           <h2 className="text-2xl font-bold">{heading}</h2>
           <p className="mt-2 text-blue-100">
             학년과 학교, 지금 성적을 알려 주시면 아이에게 맞는 반을 안내해 드립니다. 수업 중이면 문자를 남겨 주세요.
           </p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-          <p className="text-2xl font-extrabold tracking-wide text-brand-accent">☎ {ACADEMY.phone}</p>
+        {/* 전화번호·버튼은 줄바꿈 없이 한 줄 */}
+        <div className="flex shrink-0 flex-wrap items-center gap-4">
+          <p className="whitespace-nowrap text-2xl font-extrabold tracking-wide text-brand-accent">☎ {ACADEMY.phone}</p>
           <Link
             href="/about/location"
-            className="inline-flex justify-center bg-brand-accent text-brand-dark font-bold px-5 py-3 rounded-lg hover:bg-brand-accent-hover"
+            className="inline-flex justify-center whitespace-nowrap bg-brand-accent text-brand-dark font-bold px-5 py-3 rounded-lg hover:bg-brand-accent-hover"
           >
             오시는 길
           </Link>

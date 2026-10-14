@@ -29,8 +29,10 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     type: 'website',
   },
-  // TODO: 서치어드바이저·서치콘솔 등록 후 인증 코드 입력
-  // verification: { google: '', other: { 'naver-site-verification': '' } },
+  // 검색엔진 소유 확인 (구글 서치콘솔 등록 시 google: '...' 추가)
+  verification: {
+    other: { 'naver-site-verification': '9ba99780bc15a8c9a9ae7acb7a1c8bae2e269124' },
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
