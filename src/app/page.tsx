@@ -81,15 +81,25 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* 후기 */}
+      <section aria-labelledby="review-h" className="max-w-6xl mx-auto px-4 pt-20 pb-20">
+        <div className="flex items-end justify-between mb-8">
+          <h2 id="review-h" className="text-3xl font-bold text-gray-900">김천수학학원 후기</h2>
+          <Link href="/review" className="text-brand-primary hover:underline">전체 보기 →</Link>
+        </div>
+        <ReviewGrid posts={reviews} />
+      </section>
+
       {/* 학년별 수업 */}
-      <section aria-labelledby="classes-h" className="max-w-6xl mx-auto px-4 py-20">
+      <section aria-labelledby="classes-h" className="bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 py-20">
         <h2 id="classes-h" className="text-3xl font-bold text-gray-900">학년별 수업안내</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {Object.values(CLASSES).map((c) => (
             <Link
               key={c.grade}
               href={c.path}
-              className="group rounded-2xl border border-gray-200 p-8 hover:border-brand-primary hover:shadow-lg transition"
+              className="group rounded-2xl border border-gray-200 bg-white p-8 hover:border-brand-primary hover:shadow-lg transition"
             >
               <p className="text-sm font-semibold text-brand-primary">{c.title}</p>
               <h3 className="mt-2 text-2xl font-bold text-gray-900">{c.label}</h3>
@@ -101,10 +111,11 @@ export default async function Home() {
             </Link>
           ))}
         </div>
+        </div>
       </section>
 
       {/* 칼럼 */}
-      <section aria-labelledby="column-h" className="bg-gray-50">
+      <section aria-labelledby="column-h">
         <div className="max-w-6xl mx-auto px-4 py-20">
           <div className="flex items-end justify-between">
             <h2 id="column-h" className="text-3xl font-bold text-gray-900">학교별 수학 칼럼</h2>
@@ -117,16 +128,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 후기 + 공지 */}
-      <section className="max-w-6xl mx-auto px-4 py-20 space-y-16">
-        <div aria-labelledby="review-h">
-          <div className="flex items-end justify-between mb-8">
-            <h2 id="review-h" className="text-3xl font-bold text-gray-900">김천수학학원 후기</h2>
-            <Link href="/review" className="text-brand-primary hover:underline">전체 보기 →</Link>
-          </div>
-          <ReviewGrid posts={reviews} />
-        </div>
-        <div aria-labelledby="notice-h" className="max-w-3xl">
+      {/* 공지 */}
+      <section aria-labelledby="notice-h" className="max-w-6xl mx-auto px-4 pb-20">
+        <div className="max-w-3xl">
           <div className="flex items-end justify-between mb-8">
             <h2 id="notice-h" className="text-3xl font-bold text-gray-900">공지사항</h2>
             <Link href="/news/notice" className="text-brand-primary hover:underline">더보기 →</Link>

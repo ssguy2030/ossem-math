@@ -1,8 +1,9 @@
 // 학원 기본 정보의 단일 출처.
 // 상호·주소·전화·교습비가 바뀌면 이 파일만 고치면 화면·푸터·JSON-LD가 함께 갱신된다.
 
-// TODO: 도메인이 확정되면 교체 (sitemap·canonical·JSON-LD 모두 이 값을 쓴다)
-export const SITE_URL = 'https://www.ossemmath.co.kr';
+// 사이트 기준 주소 — sitemap·canonical·robots·JSON-LD·RSS 모두 이 값을 쓴다.
+// 도메인을 구입하면 이 한 줄만 바꾸고 Vercel에 도메인을 연결하면 된다.
+export const SITE_URL = 'https://ossem-math.vercel.app';
 
 export const BRAND = '오쌤수학'; // title 접미사
 export const ACADEMY_NAME = '오쌤수학학원';

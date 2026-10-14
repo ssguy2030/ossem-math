@@ -24,8 +24,10 @@ Next.js App Router + Supabase. 쓱싹(sseuksak-web) 구조를 바탕으로 만�
 - 메뉴: `src/app/lib/nav.ts`
 - 고정 페이지 수정일(sitemap): `src/app/lib/pageMeta.ts`
 
-## 배포 후
-- `site.ts`의 `SITE_URL`을 실제 도메인으로 교체
+## 배포
+- Vercel 프로젝트 `ossem-math` — https://ossem-math.vercel.app
+- GitHub `ssguy2030/ossem-math`의 main에 푸시하면 자동 배포
+- 도메인을 구입하면 `site.ts`의 `SITE_URL`을 바꾸고 Vercel → Settings → Domains에 연결
 - 네이버 서치어드바이저·구글 서치콘솔 등록 → `layout.tsx`의 `verification`에 코드 입력
 - 사이트맵 `/sitemap.xml`, RSS `/rss.xml` 제출
 - Vercel 환경변수에 `CRON_SECRET` 설정 (Supabase 무료 플랜 일시정지 방지 cron)
