@@ -1,20 +1,20 @@
 import type { Metadata } from 'next';
-import JsonLd from '../components/JsonLd';
-import PageHeader from '../components/PageHeader';
-import { breadcrumb } from '../lib/schema';
-import { ACADEMY, TUITION, formatWon } from '../lib/site';
+import JsonLd from '../../components/JsonLd';
+import PageHeader from '../../components/PageHeader';
+import { breadcrumb } from '../../lib/schema';
+import { ACADEMY, TUITION, formatWon } from '../../lib/site';
 
 export const metadata: Metadata = {
   title: '교습비 안내',
   description: `오쌤수학학원 교습비: 초등수학 월 22만원, 중등수학 월 27만원, 고등수학 월 37만원. 학원등록번호 ${ACADEMY.registrationNo}, 교습과목 수학.`,
-  alternates: { canonical: '/tuition' },
+  alternates: { canonical: '/about/tuition' },
 };
 
 export default function TuitionPage() {
   return (
     <>
-      <JsonLd data={breadcrumb([['교습비 안내', '/tuition']])} />
-      <PageHeader crumbs={[['교습비 안내', '/tuition']]} title="교습비 안내" />
+      <JsonLd data={breadcrumb([['학원소개', '/about/philosophy'], ['교습비 안내', '/about/tuition']])} />
+      <PageHeader crumbs={[['학원소개', '/about/philosophy'], ['교습비 안내', '/about/tuition']]} title="교습비 안내" />
       <div className="max-w-3xl mx-auto px-4 py-14 space-y-12">
         <section aria-labelledby="fee">
           <h2 id="fee" className="text-xl font-bold mb-4">과정별 월 교습비</h2>

@@ -49,7 +49,7 @@ export default function Footer() {
             ))}
           </div>
           <div className="flex flex-wrap gap-4 text-xs">
-            <Link href="/tuition" className="hover:text-white">교습비 안내</Link>
+            <Link href="/about/tuition" className="hover:text-white">교습비 안내</Link>
             <Link href="/privacy" className="hover:text-white">개인정보처리방침</Link>
             <Link href="/classes/elementary" className="text-gray-600 hover:text-white">김천 초등수학학원</Link>
             <Link href="/classes/middle" className="text-gray-600 hover:text-white">김천 중등수학학원</Link>

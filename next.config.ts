@@ -50,6 +50,7 @@ const nextConfig: NextConfig = {
       { source: '/middle', destination: '/classes/middle', permanent: true },
       { source: '/high', destination: '/classes/high', permanent: true },
       { source: '/location', destination: '/about/location', permanent: true },
+      { source: '/tuition', destination: '/about/tuition', permanent: true },
     ];
   },
 };

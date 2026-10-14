@@ -12,6 +12,6 @@ export const STATIC_PAGES: { path: string; modified: string }[] = [
   { path: '/review', modified: '2026-10-14' },
   { path: '/news/notice', modified: '2026-10-14' },
   { path: '/news/column', modified: '2026-10-14' },
-  { path: '/tuition', modified: '2026-10-14' },
+  { path: '/about/tuition', modified: '2026-10-14' },
   { path: '/privacy', modified: '2026-10-14' },
 ];

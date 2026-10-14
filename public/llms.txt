@@ -29,7 +29,7 @@
 ## 학원소개
 - [교육철학](/about/philosophy)
 - [오시는 길](/about/location)
-- [교습비 안내](/tuition)
+- [교습비 안내](/about/tuition)
 
 ## 콘텐츠
 - [김천수학학원 후기](/review)
