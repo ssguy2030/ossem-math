@@ -19,7 +19,7 @@ export default function PageHeader({
               <Link href="/" className="hover:text-brand-primary">홈</Link>
             </li>
             {crumbs.map(([name, href], i) => (
-              <li key={href} className="flex items-center gap-1">
+              <li key={`${i}-${href}`} className="flex items-center gap-1">
                 <span aria-hidden>›</span>
                 {i === crumbs.length - 1 ? (
                   <span aria-current="page" className="text-gray-700">{name}</span>

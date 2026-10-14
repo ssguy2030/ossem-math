@@ -73,8 +73,8 @@ export default function PostDetail({
       <article className="max-w-3xl mx-auto px-4 py-12">
         <nav aria-label="현재 위치" className="text-sm text-gray-500 mb-6">
           <Link href="/" className="hover:text-brand-primary">홈</Link>
-          {crumbs.map(([name, href]) => (
-            <span key={href}>
+          {crumbs.map(([name, href], i) => (
+            <span key={`${i}-${href}`}>
               {' › '}
               <Link href={href} className="hover:text-brand-primary">{name}</Link>
             </span>

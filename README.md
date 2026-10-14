@@ -8,6 +8,14 @@ Next.js App Router + Supabase. 쓱싹(sseuksak-web) 구조를 바탕으로 만�
 - 스키마: `supabase/migrations/0001_init.sql` 적용 완료 (posts 테이블, RLS, images 버킷)
 - `.env.local`에 URL·publishable key·CRON_SECRET 설정 완료 (git 제외)
 
+## 보안 구조
+- 회원가입은 꺼져 있다 (Authentication → Sign In / Providers).
+- 글·이미지 쓰기는 **관리자 명단(`private.admins`)에 있는 계정만** 가능하다. 로그인만으로는 쓸 수 없다.
+  - 관리자 추가: Supabase SQL Editor에서 `insert into private.admins (user_id) values ('<Authentication → Users의 User UID>');`
+  - 관리자 제거: `delete from private.admins where user_id = '<UID>';`
+- 마이그레이션: `0001_init.sql` → `0002_admin_allowlist.sql` → `0003_is_admin_rpc.sql`
+- `/api/revalidate`는 관리자 토큰만, `/api/keepalive`는 `CRON_SECRET`만 허용한다.
+
 ## 처음 설정 (남은 것)
 1. Supabase 대시보드 → Authentication → Users → **Add user**로 관리자 계정 1개 추가
 2. Authentication → Sign In / Providers → **Allow new users to sign up 끄기**

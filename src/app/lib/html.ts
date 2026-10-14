@@ -1,6 +1,10 @@
 import sanitizeHtml from 'sanitize-html';
 import { INTERNAL_HREF } from './site';
 
+// 인라인 style은 에디터가 실제로 쓰는 속성만 허용 (화면을 덮는 position·배경이미지 등 차단)
+const SAFE_COLOR = [/^#[0-9a-f]{3,8}$/i, /^rgba?\(\s*[\d.\s,%]+\)$/i];
+const SAFE_LENGTH = [/^\d+(\.\d+)?(px|%|em|rem)?$/, /^auto$/];
+
 /** 서버에서 미리 sanitize → AI 크롤러가 본문 전체를 읽을 수 있음 */
 export function sanitizePostHtml(html: string): string {
   return sanitizeHtml(html, {
@@ -10,21 +14,47 @@ export function sanitizePostHtml(html: string): string {
       img: ['src', 'alt', 'width', 'height', 'style', 'class'],
       iframe: ['src', 'width', 'height', 'allowfullscreen', 'frameborder'],
       a: ['href', 'target', 'rel'],
-      td: ['colspan', 'rowspan'],
-      th: ['colspan', 'rowspan'],
-      '*': ['class', 'style'],
+      td: ['colspan', 'rowspan', 'style'],
+      th: ['colspan', 'rowspan', 'style'],
+      p: ['style'],
+      h1: ['style'],
+      h2: ['style'],
+      h3: ['style'],
+      span: ['style'],
     },
-    allowedSchemes: ['http', 'https'],
+    allowedClasses: { img: ['editor-image'] },
+    allowedStyles: {
+      '*': {
+        'text-align': [/^(left|right|center|justify)$/],
+        color: SAFE_COLOR,
+      },
+      img: {
+        display: [/^block$/],
+        margin: [/^[\d\sa-z%.]+$/i],
+        'margin-left': SAFE_LENGTH,
+        'margin-right': SAFE_LENGTH,
+        width: SAFE_LENGTH,
+        height: SAFE_LENGTH,
+      },
+      td: { width: SAFE_LENGTH },
+      th: { width: SAFE_LENGTH },
+    },
+    allowedSchemes: ['http', 'https', 'mailto', 'tel'],
+    allowedSchemesByTag: { img: ['https', 'http'], iframe: ['https'] },
+    allowProtocolRelative: false,
     allowedIframeHostnames: ['www.youtube.com', 'www.youtube-nocookie.com'],
     textFilter: (text) => text.replace(/&nbsp;/g, ' '),
     transformTags: {
-      // 내부 링크에는 nofollow·새 탭을 빼서 내부 링크 신호가 전달되도록 한다.
       a: (tagName, attribs) => {
-        if (!INTERNAL_HREF.test(attribs.href || '')) return { tagName, attribs };
-        const rest = { ...attribs };
-        delete rest.target;
-        delete rest.rel;
-        return { tagName, attribs: rest };
+        // 내부 링크: nofollow·새 탭을 빼서 내부 링크 신호가 전달되도록 한다.
+        if (INTERNAL_HREF.test(attribs.href || '')) {
+          const rest = { ...attribs };
+          delete rest.target;
+          delete rest.rel;
+          return { tagName, attribs: rest };
+        }
+        // 외부 링크: 새 탭 + opener 차단(탭내빙 방지)
+        return { tagName, attribs: { ...attribs, target: '_blank', rel: 'noopener noreferrer nofollow' } };
       },
     },
   });

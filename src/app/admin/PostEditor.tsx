@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useEditor, EditorContent, type Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
@@ -91,6 +92,7 @@ function Toolbar({ editor, onImage, uploading }: { editor: Editor | null; onImag
 }
 
 export default function PostEditor({ initial }: { initial?: Post }) {
+  const router = useRouter();
   const isEdit = !!initial;
   const [type, setType] = useState<PostType>(initial?.type ?? 'column');
   const [category, setCategory] = useState(
@@ -196,7 +198,8 @@ export default function PostEditor({ initial }: { initial?: Post }) {
     if (saved.type === 'column' && saved.category) paths.push(`/news/column/${saved.category}`);
     if (initial && postPath(initial) !== postPath(saved)) paths.push(postPath(initial));
     await revalidate(paths);
-    window.location.href = isPublished ? postPath(saved) : '/admin';
+    router.push(isPublished ? postPath(saved) : '/admin');
+    router.refresh();
   };
 
   const handleDelete = async () => {
@@ -208,7 +211,8 @@ export default function PostEditor({ initial }: { initial?: Post }) {
       LIST_PATH[initial.type],
       ...(initial.type === 'column' && initial.category ? [`/news/column/${initial.category}`] : []),
     ]);
-    window.location.href = '/admin';
+    router.push('/admin');
+    router.refresh();
   };
 
   const previewPath = postPath({ type, category: type === 'column' ? category : null, slug: slug || '…' });
