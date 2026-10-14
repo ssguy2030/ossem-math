@@ -29,8 +29,9 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     type: 'website',
   },
-  // 검색엔진 소유 확인 (구글 서치콘솔 등록 시 google: '...' 추가)
+  // 검색엔진 소유 확인
   verification: {
+    google: '6DCCCCK7ZvcCCaorCPYfSkN_Ct_BgB2qlol_iihukms',
     other: { 'naver-site-verification': '9ba99780bc15a8c9a9ae7acb7a1c8bae2e269124' },
   },
 };
