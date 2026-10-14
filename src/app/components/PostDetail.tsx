@@ -102,7 +102,7 @@ export default function PostDetail({
             ) : (
               <p>오쌤수학 학부모 후기</p>
             )}
-            <AdminEditButton id={post.id} />
+            <AdminEditButton post={post} />
           </div>
         </header>
 

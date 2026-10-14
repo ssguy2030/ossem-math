@@ -18,7 +18,7 @@ import { SmartLink } from '../lib/tiptapLink';
 import { supabase } from '../lib/supabase';
 import { COLUMN_CATEGORIES } from '../lib/categories';
 import { postPath, type Post, type PostType } from '../lib/posts';
-import { revalidate } from './useAdmin';
+import { deletePost, revalidate } from './useAdmin';
 
 const TYPE_LABEL: Record<PostType, string> = { notice: '공지사항', column: '칼럼', review: '후기' };
 const LIST_PATH: Record<PostType, string> = { notice: '/news/notice', column: '/news/column', review: '/review' };
@@ -203,14 +203,9 @@ export default function PostEditor({ initial }: { initial?: Post }) {
   };
 
   const handleDelete = async () => {
-    if (!supabase || !initial || !confirm('이 글을 삭제할까요? 되돌릴 수 없습니다.')) return;
-    const { error } = await supabase.from('posts').delete().eq('id', initial.id);
-    if (error) return alert(`삭제 실패: ${error.message}`);
-    await revalidate([
-      postPath(initial),
-      LIST_PATH[initial.type],
-      ...(initial.type === 'column' && initial.category ? [`/news/column/${initial.category}`] : []),
-    ]);
+    if (!initial || !confirm('이 글을 삭제할까요? 되돌릴 수 없습니다.')) return;
+    const error = await deletePost(initial);
+    if (error) return alert(`삭제 실패: ${error}`);
     router.push('/admin');
     router.refresh();
   };

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { getCategory } from '../lib/categories';
 import { formatDate, postPath, type PostType } from '../lib/posts';
 import { supabase } from '../lib/supabase';
-import { useAdmin } from './useAdmin';
+import { deletePost, useAdmin } from './useAdmin';
 
 interface Row {
   id: string;
@@ -34,6 +34,13 @@ export default function AdminHome() {
       .order('published_at', { ascending: false })
       .then(({ data }) => setRows((data ?? []) as Row[]));
   }, [ready]);
+
+  const handleDelete = async (r: Row) => {
+    if (!confirm(`"${r.title}"\n이 글을 삭제할까요? 되돌릴 수 없습니다.`)) return;
+    const error = await deletePost(r);
+    if (error) return alert(`삭제 실패: ${error}`);
+    setRows((prev) => prev.filter((x) => x.id !== r.id));
+  };
 
   if (!ready) return <p className="py-32 text-center text-gray-500">확인 중…</p>;
 
@@ -86,8 +93,11 @@ export default function AdminHome() {
               </td>
               <td className="p-3 whitespace-nowrap">{formatDate(r.published_at)}</td>
               <td className="p-3">{r.is_published ? '공개' : <span className="text-orange-600">임시저장</span>}</td>
-              <td className="p-3 text-right">
+              <td className="p-3 text-right whitespace-nowrap">
                 <Link href={`/admin/edit/${r.id}`} className="text-brand-primary">수정</Link>
+                <button type="button" onClick={() => handleDelete(r)} className="ml-3 text-red-600 hover:underline">
+                  삭제
+                </button>
               </td>
             </tr>
           ))}
