@@ -16,6 +16,7 @@ const pretendard = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  applicationName: BRAND,
   title: { default: `김천 율곡동 혁신도시 수학학원 | ${BRAND}`, template: `%s | ${BRAND}` },
   description: `김천 율곡동(혁신도시) 오쌤수학학원. 김천에서 ${ACADEMY.years}년째, 초·중·고 수학을 ${ACADEMY.classSize} 소수정예와 1:1 맨투맨 퀘스천 수업으로 가르칩니다. 문제풀이보다 개념이해, 평균 등원 기간 ${ACADEMY.avgStay}.`,
   alternates: { canonical: '/' },
