@@ -39,6 +39,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: supabaseHost, pathname: '/storage/v1/object/public/images/**' },
     ],
+    localPatterns: [
+      // 후기 사진은 같은 파일명에 새 사진을 넣을 수 있어 ?v=3 같은 버전 쿼리로 캐시를 끊는다
+      // (사진을 다시 바꾸면 여기와 posts의 thumbnail·content 버전을 함께 올린다)
+      { pathname: '/images/reviews/**', search: '?v=3' },
+      { pathname: '/**', search: '' },
+    ],
   },
 
   async headers() {

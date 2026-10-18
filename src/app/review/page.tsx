@@ -22,7 +22,7 @@ export default async function ReviewListPage() {
       <PageHeader
         crumbs={[['후기', '/review']]}
         title="김천수학학원 후기"
-        lead={`오쌤수학의 평균 등원 기간은 ${ACADEMY.avgStay}입니다. 오래 다닌 학생과 학부모님이 직접 들려준 이야기입니다.`}
+        lead="학부모님들이 오쌤수학을 선택하는 이유를 아래에서 직접 확인해보세요"
       />
       <div className="max-w-5xl mx-auto px-4 py-12">
         <ReviewGrid posts={posts} />

@@ -49,6 +49,8 @@ export async function listPosts(
     .select(LIST_COLUMNS)
     .eq('type', type)
     .eq('is_published', true)
+    // sort_order가 비어 있는 새 글이 맨 앞, 그다음 큰 숫자부터, 그다음 게시일 순
+    .order('sort_order', { ascending: false, nullsFirst: true })
     .order('published_at', { ascending: false })
     .order('created_at', { ascending: false });
   if (opts.category) q = q.eq('category', opts.category);
