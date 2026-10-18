@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ACADEMY } from '../lib/site';
 
 /** 페이지 하단 공통 상담 안내 (전화번호는 링크 없이 표기) */
-export default function ContactCta({ heading = '상담은 전화 한 통으로 시작합니다' }: { heading?: string }) {
+export default function ContactCta({ heading = '아이 수학, 편하게 물어보세요' }: { heading?: string }) {
   return (
     <section className="bg-brand-dark text-white">
       <div className="max-w-5xl mx-auto px-4 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
