@@ -8,7 +8,7 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: '공지사항',
-  description: '오쌤수학학원 개강·특강·시험대비 일정과 학원 소식을 알려 드립니다.',
+  description: '오쌤수학학원 시험대비 일정과 방학공지 및 학원 소식을 알려 드립니다.',
   alternates: { canonical: '/news/notice' },
 };
 

@@ -43,6 +43,7 @@ export const formatWon = (n: number) => `${(n / 10000).toLocaleString('ko-KR')}ë
 export const SNS = {
   instagram: 'https://www.instagram.com/ossemsuhak',
   blog: 'https://blog.naver.com/ossem0912',
+  naverMap: 'https://naver.me/xTsgNb8R',
 } as const;
 
 const SITE_HOST = new URL(SITE_URL).hostname.replace(/^www\./, '').replace(/\./g, '\\.');

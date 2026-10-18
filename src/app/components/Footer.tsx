@@ -20,6 +20,15 @@ const sns = [
       </svg>
     ),
   },
+  {
+    name: '네이버 지도',
+    href: SNS.naverMap,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden>
+        <path d="M12 0C7.03 0 3 4.03 3 9c0 6.75 9 15 9 15s9-8.25 9-15c0-4.97-4.03-9-9-9zm0 12.5A3.5 3.5 0 1 1 12 5.5a3.5 3.5 0 0 1 0 7z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Footer() {

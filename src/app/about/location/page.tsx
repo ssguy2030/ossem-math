@@ -34,7 +34,7 @@ export default function LocationPage() {
           </dl>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href={`https://map.naver.com/p/search/${mapQuery}`}
+              href={SNS.naverMap}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg bg-[#03c75a] px-5 py-3 font-bold text-white"
