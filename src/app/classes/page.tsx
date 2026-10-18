@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 };
 
 const roadmap = [
-  { grade: 'elementary' as const, stage: '초1 ~ 초6', point: '오늘 배운 개념은 오늘 이해하기, 교구 사고력 활동, 6학년 예비중 과정' },
-  { grade: 'middle' as const, stage: '중1 ~ 중3', point: 'A반(현행+선행)·B반(기초) 수준별 수업, 시험 4주 전부터 율곡중·운남중 학교별 기출 대비' },
+  { grade: 'elementary' as const, stage: '초2 ~ 초6', point: '오늘 배운 개념은 오늘 이해하기, 교구 사고력 활동, 6학년 예비중 과정' },
+  { grade: 'middle' as const, stage: '중1 ~ 중3', point: 'A반(Advanced)·B반(Basic), 시험 4주 전부터 학교별 기출 대비' },
   { grade: 'high' as const, stage: '고1 ~ 고3', point: '율곡고·김천중앙고 등 학교별·타 학교 기출 내신 대비, 스스로 공부하는 습관 관리' },
 ];
 

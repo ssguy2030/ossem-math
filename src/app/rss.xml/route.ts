@@ -14,7 +14,7 @@ export async function GET() {
   <channel>
     <title>${esc(BRAND)} 소식·칼럼</title>
     <link>${absUrl('/')}</link>
-    <description>김천 율곡동 ${esc(ACADEMY_NAME)}의 공지사항, 학교별 수학 칼럼, 수강 후기</description>
+    <description>김천 율곡동 ${esc(ACADEMY_NAME)}의 공지사항, 오쌤수학칼럼, 수강 후기</description>
     <language>ko</language>
     ${posts
       .map(

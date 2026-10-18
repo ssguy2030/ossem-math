@@ -55,7 +55,7 @@ export default function LocationPage() {
         <section id="contact" aria-labelledby="contact-h" className="rounded-2xl bg-brand-soft p-8 scroll-mt-24">
           <h2 id="contact-h" className="text-2xl font-bold text-gray-900">상담 문의</h2>
           <p className="mt-3 text-gray-700 leading-relaxed">
-            전화로 학년과 학교, 현재 성적을 알려 주시면 상담 일정을 잡아 드립니다. 아이와 함께 방문하셔서 정말 우리 아이에게
+            아이와 함께 방문하셔서 정말 우리 아이에게
             맞는 곳인지 직접 확인해 보세요. 수업 중에는 전화를 받지 못할 수 있으니 문자를 남겨 주세요.
           </p>
           <p className="mt-6 text-sm font-semibold text-gray-500">상담 전화</p>

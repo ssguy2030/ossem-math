@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { CLASSES } from './_data/classes';
 import ContactCta from './components/ContactCta';
 import JsonLd from './components/JsonLd';
-import { PostCards, PostRows } from './components/PostCards';
+import { PostRows } from './components/PostCards';
 import ReviewGrid from './components/ReviewGrid';
 import { listPosts } from './lib/posts';
 import { faqPage } from './lib/schema';
@@ -30,8 +30,7 @@ const homeFaqs = [
 ];
 
 export default async function Home() {
-  const [columns, reviews, notices] = await Promise.all([
-    listPosts('column', { limit: 4 }),
+  const [reviews, notices] = await Promise.all([
     listPosts('review', { limit: 6 }),
     listPosts('notice', { limit: 5 }),
   ]);
@@ -111,20 +110,6 @@ export default async function Home() {
             </Link>
           ))}
         </div>
-        </div>
-      </section>
-
-      {/* 칼럼 */}
-      <section aria-labelledby="column-h">
-        <div className="max-w-6xl mx-auto px-4 py-20">
-          <div className="flex items-end justify-between">
-            <h2 id="column-h" className="text-3xl font-bold text-gray-900">학교별 수학 칼럼</h2>
-            <Link href="/news/column" className="text-brand-primary hover:underline">전체 보기 →</Link>
-          </div>
-          <p className="mt-2 text-gray-600">율곡중·운남중·율곡고·김천중앙고 시험 분석과 초등 학습가이드</p>
-          <div className="mt-8">
-            <PostCards posts={columns} empty="칼럼이 곧 올라옵니다." />
-          </div>
         </div>
       </section>
 

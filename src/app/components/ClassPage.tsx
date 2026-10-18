@@ -1,14 +1,11 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { CLASSES, EXAM_PREP } from '../_data/classes';
-import { categoriesByGrade, type Grade } from '../lib/categories';
-import { listPosts } from '../lib/posts';
+import type { Grade } from '../lib/categories';
 import { academyRef, breadcrumb, faqPage } from '../lib/schema';
 import { ACADEMY, absUrl, formatWon } from '../lib/site';
 import ContactCta from './ContactCta';
 import JsonLd from './JsonLd';
 import PageHeader from './PageHeader';
-import { PostCards } from './PostCards';
 
 export function classMetadata(grade: Grade): Metadata {
   const c = CLASSES[grade];
@@ -20,10 +17,8 @@ export function classMetadata(grade: Grade): Metadata {
   };
 }
 
-export default async function ClassPage({ grade }: { grade: Grade }) {
+export default function ClassPage({ grade }: { grade: Grade }) {
   const c = CLASSES[grade];
-  const cats = categoriesByGrade(grade);
-  const columns = await listPosts('column', { categories: cats.map((x) => x.slug), limit: 4 });
 
   const course = {
     '@context': 'https://schema.org',
@@ -60,14 +55,6 @@ export default async function ClassPage({ grade }: { grade: Grade }) {
               <p className="mt-1 text-xl font-bold text-gray-900">{v}</p>
             </div>
           ))}
-        </section>
-
-        <section aria-labelledby="schools">
-          <h2 id="schools" className="text-2xl font-bold mb-4">이런 학생이 다닙니다</h2>
-          <p className="text-gray-700 leading-relaxed">
-            김천 혁신도시(율곡동) {c.schools.join('·')} 학생들이 주로 다닙니다. 학교마다 진도와 시험 범위가 달라
-            같은 학년이라도 학교와 수준을 함께 보고 반을 정합니다.
-          </p>
         </section>
 
         <section aria-labelledby="goals">
@@ -150,22 +137,6 @@ export default async function ClassPage({ grade }: { grade: Grade }) {
               ))}
             </ol>
           </div>
-        </section>
-
-        <section aria-labelledby="columns">
-          <div className="flex items-end justify-between mb-6">
-            <h2 id="columns" className="text-2xl font-bold">
-              {cats.map((x) => x.name).join('·')} 최신 칼럼
-            </h2>
-            <div className="flex gap-3 text-sm">
-              {cats.map((x) => (
-                <Link key={x.slug} href={`/news/column/${x.slug}`} className="text-brand-primary hover:underline">
-                  {x.name} 전체 →
-                </Link>
-              ))}
-            </div>
-          </div>
-          <PostCards posts={columns} empty="칼럼이 곧 올라옵니다." />
         </section>
 
         <section aria-labelledby="faq">

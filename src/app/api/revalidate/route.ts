@@ -33,7 +33,5 @@ export async function POST(request: Request) {
 
   const targets = new Set(['/', '/sitemap.xml', '/rss.xml', ...valid]);
   for (const p of targets) revalidatePath(p);
-  // 학년별 페이지 하단의 최신 칼럼 목록
-  ['/classes/elementary', '/classes/middle', '/classes/high'].forEach((p) => revalidatePath(p));
   return Response.json({ revalidated: [...targets] });
 }
