@@ -169,7 +169,7 @@ export default function PostEditor({ initial }: { initial?: Post }) {
     const s = slug.trim().toLowerCase();
     if (!title.trim() || editor.isEmpty) return alert('제목과 본문을 입력해 주세요.');
     if (!SLUG_RE.test(s)) return alert('URL은 한글·영문 소문자·숫자와 하이픈(-)만 쓸 수 있습니다.');
-    if (type === 'column' && !category) return alert('칼럼 카테고리(학교)를 선택해 주세요.');
+    if (type === 'column' && !category) return alert('칼럼 카테고리(초등부·중등부·고등부)를 선택해 주세요.');
 
     const row = {
       type,
@@ -231,7 +231,7 @@ export default function PostEditor({ initial }: { initial?: Post }) {
           </label>
           {type === 'column' && (
             <label className="block">
-              <span className="mb-1 block text-sm font-bold text-gray-700">카테고리(학교)</span>
+              <span className="mb-1 block text-sm font-bold text-gray-700">카테고리</span>
               <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full rounded-lg border border-gray-300 px-3 py-2">
                 {COLUMN_CATEGORIES.map((c) => (
                   <option key={c.slug} value={c.slug}>{c.name}</option>

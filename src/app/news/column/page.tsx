@@ -10,7 +10,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: '오쌤수학칼럼',
   description:
-    '율곡중·운남중·율곡고·김천중앙고 수학 시험범위와 출제 경향, 김천 초등 수학 학습가이드. 김천에서 20년째 수학을 가르치는 오쌤이 학교별로 정리합니다.',
+    '율곡중·운남중·율곡고·김천중앙고 수학 시험범위와 출제 경향, 김천 초등 수학 학습가이드. 김천에서 20년째 수학을 가르치는 오쌤이 초등부·중등부·고등부로 나눠 정리합니다.',
   alternates: { canonical: '/news/column' },
 };
 

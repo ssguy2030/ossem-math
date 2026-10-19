@@ -64,6 +64,9 @@ const nextConfig: NextConfig = {
       { source: '/high', destination: '/classes/high', permanent: true },
       { source: '/location', destination: '/about/location', permanent: true },
       { source: '/tuition', destination: '/about/tuition', permanent: true },
+      // 칼럼 카테고리를 학교별에서 초등부·중등부·고등부로 합침 (2026-10)
+      { source: '/news/column/:school(yulgok-middle|unnam-middle)/:path*', destination: '/news/column/middle/:path*', permanent: true },
+      { source: '/news/column/:school(yulgok-high|jungang-high)/:path*', destination: '/news/column/high/:path*', permanent: true },
     ];
   },
 };
