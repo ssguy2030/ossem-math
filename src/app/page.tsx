@@ -67,7 +67,7 @@ export default async function Home() {
           <div className="relative mt-10 aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/20 lg:mt-0 lg:aspect-square">
             <Image
               src="/images/hero-class.jpg"
-              alt="오쌤수학학원 교실에서 창가 책상에 앉아 수학 문제를 푸는 학생들"
+              alt="김천 율곡동 오쌤수학학원에 초등학교 3학년부터 고등학교 3학년까지 다닌 학생"
               fill
               sizes="(min-width: 1152px) 430px, (min-width: 1024px) 38vw, 100vw"
               className="object-cover object-[50%_70%] lg:object-[50%_80%]"
