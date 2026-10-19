@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { CLASSES } from './_data/classes';
 import ContactCta from './components/ContactCta';
@@ -41,9 +42,10 @@ export default async function Home() {
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-brand-dark to-brand-primary text-white">
-        <div className="max-w-6xl mx-auto px-4 py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 pt-16 pb-20 md:py-24 lg:pt-14 lg:pb-20 lg:grid lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-12">
+          <div>
           <p className="font-semibold text-brand-accent">김천 혁신도시 율곡동 · 초등 · 중등 · 고등</p>
-          <h1 className="mt-4 text-4xl md:text-6xl font-extrabold leading-tight">
+          <h1 className="mt-4 text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight">
             김천 율곡동 수학학원,
             <br />
             오쌤수학
@@ -59,6 +61,18 @@ export default async function Home() {
             <Link href="/classes" className="rounded-lg border border-white/60 px-6 py-3 font-bold hover:bg-white/10">
               수업안내 보기
             </Link>
+          </div>
+          </div>
+          {/* 모바일은 가로로 잘라 문구 아래에, 데스크탑은 세로 사진 그대로 오른쪽에 */}
+          <div className="relative mt-10 aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/20 lg:mt-0 lg:aspect-square">
+            <Image
+              src="/images/hero-class.jpg"
+              alt="오쌤수학학원 교실에서 창가 책상에 앉아 수학 문제를 푸는 학생들"
+              fill
+              sizes="(min-width: 1152px) 430px, (min-width: 1024px) 38vw, 100vw"
+              className="object-cover object-[50%_70%] lg:object-[50%_80%]"
+              priority
+            />
           </div>
         </div>
       </section>
