@@ -61,20 +61,9 @@ function Btn({ onClick, active, disabled, title, children }: {
   );
 }
 
-function Toolbar({ editor, onImage, uploading, htmlMode, onToggleHtml }: {
-  editor: Editor | null; onImage: () => void; uploading: boolean; htmlMode: boolean; onToggleHtml: () => void;
-}) {
+function Toolbar({ editor, onImage, uploading }: { editor: Editor | null; onImage: () => void; uploading: boolean }) {
   if (!editor) return null;
   const c = () => editor.chain().focus();
-  const htmlBtn = <Btn title="HTML 직접 편집" onClick={onToggleHtml} active={htmlMode}>&lt;/&gt; HTML</Btn>;
-  if (htmlMode) {
-    return (
-      <div className="sticky top-16 z-40 flex flex-wrap items-center gap-2 rounded-t-xl border border-b-0 border-gray-300 bg-gray-50 p-2">
-        {htmlBtn}
-        <span className="text-xs text-gray-500">HTML을 고친 뒤 다시 누르면 편집기로 돌아갑니다. 편집기가 지원하지 않는 태그·스타일은 정리될 수 있어요.</span>
-      </div>
-    );
-  }
   return (
     <div className="sticky top-16 z-40 flex flex-wrap gap-1 rounded-t-xl border border-b-0 border-gray-300 bg-gray-50 p-2">
       <Btn title="제목 2 (FAQ: ?로 끝나면 자동 FAQ 스키마)" onClick={() => c().toggleHeading({ level: 2 }).run()} active={editor.isActive('heading', { level: 2 })}>H2</Btn>
@@ -95,11 +84,10 @@ function Toolbar({ editor, onImage, uploading, htmlMode, onToggleHtml }: {
       <Btn title="이미지" onClick={onImage} disabled={uploading}>🖼 이미지</Btn>
       <Btn title="유튜브" onClick={() => { const url = window.prompt('유튜브 URL'); if (url) editor.commands.setYoutubeVideo({ src: url, width: 640, height: 360 }); }}>▶ 유튜브</Btn>
       <Btn title="표" onClick={() => c().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>⊞ 표</Btn>
+      <Btn title="HTML 입력" onClick={() => { const html = window.prompt('HTML을 입력하세요:'); if (html) c().insertContent(html).run(); }}>{'</>'}</Btn>
       <span className="mx-1 w-px bg-gray-300" />
       <Btn title="되돌리기" onClick={() => c().undo().run()} disabled={!editor.can().undo()}>↩</Btn>
       <Btn title="다시실행" onClick={() => c().redo().run()} disabled={!editor.can().redo()}>↪</Btn>
-      <span className="mx-1 w-px bg-gray-300" />
-      {htmlBtn}
     </div>
   );
 }
@@ -120,8 +108,6 @@ export default function PostEditor({ initial }: { initial?: Post }) {
   const [isPublished, setIsPublished] = useState(initial?.is_published ?? true);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [htmlMode, setHtmlMode] = useState(false);
-  const [htmlSource, setHtmlSource] = useState('');
 
   const handleTitle = (value: string) => {
     setTitle(value);
@@ -178,16 +164,8 @@ export default function PostEditor({ initial }: { initial?: Post }) {
       if (!thumbnail) setThumbnail(url);
     });
 
-  const toggleHtml = () => {
-    if (!editor) return;
-    if (htmlMode) editor.commands.setContent(htmlSource);
-    else setHtmlSource(editor.getHTML());
-    setHtmlMode(!htmlMode);
-  };
-
   const handleSave = async () => {
     if (!supabase || !editor) return;
-    if (htmlMode) editor.commands.setContent(htmlSource);
     const content = editor.getHTML();
     const s = slug.trim().toLowerCase();
     if (!title.trim() || editor.isEmpty) return alert('제목과 본문을 입력해 주세요.');
@@ -295,19 +273,9 @@ export default function PostEditor({ initial }: { initial?: Post }) {
           <span className="mb-1 block text-sm font-bold text-gray-700">본문</span>
           <p className="mb-2 text-xs text-gray-500">💡 H2 제목을 &quot;?&quot;로 끝내고 바로 아래 문단에 답을 쓰면 FAQ로 검색엔진에 표시될 수 있어요.</p>
           {uploading && <p className="mb-2 rounded bg-blue-50 px-3 py-2 text-sm text-brand-primary">이미지 업로드 중…</p>}
-          <Toolbar editor={editor} onImage={insertImage} uploading={uploading} htmlMode={htmlMode} onToggleHtml={toggleHtml} />
+          <Toolbar editor={editor} onImage={insertImage} uploading={uploading} />
           <div className="rounded-b-xl border border-gray-300">
-            {htmlMode && (
-              <textarea
-                value={htmlSource}
-                onChange={(e) => setHtmlSource(e.target.value)}
-                spellCheck={false}
-                className="block min-h-[420px] w-full resize-y rounded-b-xl p-4 font-mono text-sm focus:outline-none"
-              />
-            )}
-            <div className={htmlMode ? 'hidden' : ''}>
-              <EditorContent editor={editor} />
-            </div>
+            <EditorContent editor={editor} />
           </div>
         </div>
 
