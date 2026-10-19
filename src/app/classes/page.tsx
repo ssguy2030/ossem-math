@@ -47,7 +47,7 @@ export default function ClassesPage() {
                     <p className="mt-2 text-gray-700">{point}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-gray-500">월 교습비</p>
+                    <p className="text-sm text-gray-500">월 학원비</p>
                     <p className="text-xl font-bold text-brand-primary">{formatWon(c.fee)}</p>
                     <p className="mt-1 text-sm text-brand-primary">자세히 보기 →</p>
                   </div>

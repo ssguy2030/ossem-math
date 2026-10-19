@@ -14,7 +14,7 @@ export const NAV: NavItem[] = [
     href: '/about/philosophy',
     children: [
       { label: '교육철학', href: '/about/philosophy' },
-      { label: '교습비 안내', href: '/about/tuition' },
+      { label: '학원비 안내', href: '/about/tuition' },
       { label: '오시는 길', href: '/about/location' },
     ],
   },

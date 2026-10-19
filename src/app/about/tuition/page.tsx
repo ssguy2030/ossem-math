@@ -6,24 +6,26 @@ import { ACADEMY, TUITION, formatWon } from '../../lib/site';
 
 export const metadata: Metadata = {
   title: '교습비 안내',
-  description: `오쌤수학학원 교습비: 초등수학 월 22만원, 중등수학 월 27만원, 고등수학 월 37만원. 학원등록번호 ${ACADEMY.registrationNo}, 교습과목 수학.`,
+  description: `오쌤수학학원 학원비(교육청 신고 교습비): 초등수학 월 22만원, 중등수학 월 27만원, 고등수학 월 37만원. 교재비 별도, 학원등록번호 ${ACADEMY.registrationNo}, 교습과목 수학.`,
   alternates: { canonical: '/about/tuition' },
 };
 
 export default function TuitionPage() {
   return (
     <>
-      <JsonLd data={breadcrumb([['학원소개', '/about/philosophy'], ['교습비 안내', '/about/tuition']])} />
-      <PageHeader crumbs={[['학원소개', '/about/philosophy'], ['교습비 안내', '/about/tuition']]} title="교습비 안내" />
+      <JsonLd data={breadcrumb([['학원소개', '/about/philosophy'], ['학원비 안내', '/about/tuition']])} />
+      <PageHeader crumbs={[['학원소개', '/about/philosophy'], ['학원비 안내', '/about/tuition']]} title="학원비 안내"
+        lead="초등·중등·고등 과정별 월 학원비입니다. 교육청에 신고한 교습비 그대로이며, 교재비는 별도 비용입니다."
+      />
       <div className="max-w-3xl mx-auto px-4 py-14 space-y-12">
         <section aria-labelledby="fee">
-          <h2 id="fee" className="text-xl font-bold mb-4">과정별 월 교습비</h2>
+          <h2 id="fee" className="text-xl font-bold mb-4">과정별 월 학원비</h2>
           <table className="w-full border-collapse text-left">
             <thead>
               <tr className="border-b-2 border-gray-900">
                 <th className="py-3">교습과정</th>
                 <th className="py-3">대상</th>
-                <th className="py-3 text-right">월 교습비</th>
+                <th className="py-3 text-right">월 학원비</th>
               </tr>
             </thead>
             <tbody>

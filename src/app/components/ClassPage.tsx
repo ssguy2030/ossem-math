@@ -28,7 +28,7 @@ export default function ClassPage({ grade }: { grade: Grade }) {
     url: absUrl(c.path),
     provider: academyRef,
     inLanguage: 'ko',
-    offers: { '@type': 'Offer', price: c.fee, priceCurrency: 'KRW', category: '월 교습비' },
+    offers: { '@type': 'Offer', price: c.fee, priceCurrency: 'KRW', category: '월 학원비' },
     hasCourseInstance: {
       '@type': 'CourseInstance',
       courseMode: 'onsite',
@@ -48,7 +48,7 @@ export default function ClassPage({ grade }: { grade: Grade }) {
           {[
             ['수업 인원', `${ACADEMY.classSize} 소수정예`],
             ['수업 방식', '맨투맨 퀘스천 (1:1 질문)'],
-            ['월 교습비', formatWon(c.fee)],
+            ['월 학원비', formatWon(c.fee)],
           ].map(([k, v]) => (
             <div key={k} className="rounded-2xl bg-brand-soft p-6">
               <p className="text-sm text-gray-500">{k}</p>
