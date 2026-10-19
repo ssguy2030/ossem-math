@@ -22,7 +22,7 @@ export const ACADEMY = {
   registrationNo: '제530호',
   subject: '수학',
   hours: { weekdays: '평일 13:00 ~ 23:00', closed: '토·일요일 휴무' },
-  classSize: '한 반 4~6명',
+  classSize: '한 반 6~8명',
   avgStay: '5년 6개월',
   years: 20,
   /** 원장 경력: 학습지 2년 → 과외 2년 → 교습소(지좌동) 10년 → 혁신도시 학원 */

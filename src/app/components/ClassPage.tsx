@@ -120,9 +120,7 @@ export default function ClassPage({ grade }: { grade: Grade }) {
                 </div>
               ))}
             </dl>
-            <p className="mt-3 text-sm text-gray-500">
-              기초가 부족한 학생은 교과서 문제 위주의 프린트 제본 교재로 기본기를 먼저 다집니다.
-            </p>
+            {c.booksNote && <p className="mt-3 text-sm text-gray-500">{c.booksNote}</p>}
           </div>
           <div>
             <h2 className="text-2xl font-bold mb-4">등록부터 수업까지</h2>
