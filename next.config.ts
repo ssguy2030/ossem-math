@@ -6,6 +6,10 @@ const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL
 
 const isDev = process.env.NODE_ENV !== 'production';
 
+// GA4(gtag.js)가 쓰는 도메인 — Google 공식 CSP 안내 기준
+const gaScript = 'https://*.googletagmanager.com';
+const gaConnect = 'https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com';
+
 const securityHeaders = [
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
@@ -18,11 +22,11 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       // 'unsafe-eval'은 개발 서버(HMR)에서만 필요 — 운영에서는 제외
-      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
+      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} ${gaScript}`,
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data:",
-      `img-src 'self' data: blob: https://${supabaseHost} https://i.ytimg.com`,
-      `connect-src 'self' https://${supabaseHost} wss://${supabaseHost}${isDev ? ' ws:' : ''}`,
+      `img-src 'self' data: blob: https://${supabaseHost} https://i.ytimg.com ${gaConnect}`,
+      `connect-src 'self' https://${supabaseHost} wss://${supabaseHost} ${gaConnect}${isDev ? ' ws:' : ''}`,
       'frame-src https://www.youtube.com https://www.youtube-nocookie.com',
       "object-src 'none'",
       "base-uri 'self'",
