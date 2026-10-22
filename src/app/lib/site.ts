@@ -52,3 +52,7 @@ export const INTERNAL_HREF = new RegExp(`^(\\/|#)|^https?:\\/\\/(www\\.)?${SITE_
 
 /** 절대 URL. 한글 경로는 퍼센트 인코딩해서 sitemap·canonical·RSS에 쓴다. */
 export const absUrl = (path = '/') => encodeURI(`${SITE_URL}${path === '/' ? '' : path}`);
+
+// GA4 측정 ID (GA4 관리 > 데이터 스트림 > 웹 스트림의 'G-'로 시작하는 값).
+// 비워 두면 GA 스크립트를 넣지 않는다.
+export const GA_ID = 'G-5MS56V183E';
