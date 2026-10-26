@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import JsonLd from './components/JsonLd';
 import GoogleAnalytics from './components/GoogleAnalytics';
+import NaverAnalytics from './components/NaverAnalytics';
 import { academyNode, websiteNode } from './lib/schema';
 import { ACADEMY, BRAND, SITE_URL } from './lib/site';
 
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main className="min-h-screen">{children}</main>
         <Footer />
         <GoogleAnalytics />
+        <NaverAnalytics />
       </body>
     </html>
   );

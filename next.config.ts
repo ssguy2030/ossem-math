@@ -10,6 +10,10 @@ const isDev = process.env.NODE_ENV !== 'production';
 const gaScript = 'https://*.googletagmanager.com';
 const gaConnect = 'https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com';
 
+// 네이버 애널리틱스(wcslog.js)가 쓰는 도메인 — 스크립트 / 수집 전송(beacon·이미지)
+const naverScript = 'https://wcs.pstatic.net https://wcs.naver.net';
+const naverConnect = 'https://wcs.naver.com';
+
 const securityHeaders = [
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
@@ -22,11 +26,11 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       // 'unsafe-eval'은 개발 서버(HMR)에서만 필요 — 운영에서는 제외
-      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} ${gaScript}`,
+      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} ${gaScript} ${naverScript}`,
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data:",
-      `img-src 'self' data: blob: https://${supabaseHost} https://i.ytimg.com ${gaConnect}`,
-      `connect-src 'self' https://${supabaseHost} wss://${supabaseHost} ${gaConnect}${isDev ? ' ws:' : ''}`,
+      `img-src 'self' data: blob: https://${supabaseHost} https://i.ytimg.com ${gaConnect} ${naverConnect}`,
+      `connect-src 'self' https://${supabaseHost} wss://${supabaseHost} ${gaConnect} ${naverConnect}${isDev ? ' ws:' : ''}`,
       'frame-src https://www.youtube.com https://www.youtube-nocookie.com',
       "object-src 'none'",
       "base-uri 'self'",

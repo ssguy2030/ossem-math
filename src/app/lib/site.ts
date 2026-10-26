@@ -56,3 +56,7 @@ export const absUrl = (path = '/') => encodeURI(`${SITE_URL}${path === '/' ? '' 
 // GA4 측정 ID (GA4 관리 > 데이터 스트림 > 웹 스트림의 'G-'로 시작하는 값).
 // 비워 두면 GA 스크립트를 넣지 않는다.
 export const GA_ID = 'G-5MS56V183E';
+
+// 네이버 애널리틱스 사이트 ID (analytics.naver.com 추적 스크립트의 wcs_add["wa"] 값).
+// 비워 두면 네이버 스크립트를 넣지 않는다.
+export const NAVER_WA_ID = '1d1b919ec41c280';
