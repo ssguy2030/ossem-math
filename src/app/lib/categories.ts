@@ -1,4 +1,4 @@
-// 칼럼 카테고리(초등부·중등부·고등부).
+// 칼럼 카테고리(초등부·중등부·고등부·공통).
 // DB의 posts.category 값과 1:1로 맞춘다. 카테고리를 추가하려면 여기에 한 줄 넣으면
 // 목록·카테고리 페이지·sitemap·글쓰기 화면이 함께 늘어난다.
 
@@ -7,7 +7,8 @@ export type Grade = 'elementary' | 'middle' | 'high';
 export interface ColumnCategory {
   slug: string;
   name: string;
-  grade: Grade;
+  /** 학년이 정해지지 않은 카테고리(공통)는 비워 둔다 */
+  grade?: Grade;
   /** 카테고리 페이지 title (뒤에 "| 오쌤수학"이 붙는다) */
   title: string;
   description: string;
@@ -37,6 +38,13 @@ export const COLUMN_CATEGORIES: ColumnCategory[] = [
     title: '고등 수학 내신분석',
     description:
       '율곡고·김천중앙고 등 김천 고등학교 수학 내신 시험범위와 출제 경향, 등급 관리 방법을 오쌤수학학원이 분석합니다.',
+  },
+  {
+    slug: 'common',
+    name: '공통',
+    title: '초중고 수학 학부모 가이드',
+    description:
+      '율곡동 수학학원 고르는 법처럼 초등·중등·고등 학부모님이 함께 궁금해하시는 수학 공부와 학원 선택 이야기를 오쌤수학학원이 정리합니다.',
   },
 ];
 

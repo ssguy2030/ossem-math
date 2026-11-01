@@ -1,7 +1,7 @@
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import PostDetail, { postMetadata } from '../../../../components/PostDetail';
 import { getCategory } from '../../../../lib/categories';
-import { decodeSlug, getPost } from '../../../../lib/posts';
+import { decodeSlug, getPost, postPath } from '../../../../lib/posts';
 
 export const revalidate = 3600;
 // 빈 목록 → 첫 방문 시 생성 후 캐시(ISR). 저장 시 /api/revalidate 로 즉시 갱신.
@@ -23,6 +23,11 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ColumnDetailPage({ params }: Props) {
   const { cat, post } = await load(params);
+  if (!post) {
+    // 카테고리를 바꾼 글은 예전 주소로 들어와도 새 주소로 보낸다 ((type, slug)는 유일)
+    const moved = await getPost('column', decodeSlug((await params).slug));
+    if (moved) permanentRedirect(postPath(moved));
+  }
   if (!cat) notFound();
   return (
     <PostDetail

@@ -170,7 +170,7 @@ export default function PostEditor({ initial }: { initial?: Post }) {
     const s = slug.trim().toLowerCase();
     if (!title.trim() || editor.isEmpty) return alert('제목과 본문을 입력해 주세요.');
     if (!SLUG_RE.test(s)) return alert('URL은 한글·영문 소문자·숫자와 하이픈(-)만 쓸 수 있습니다.');
-    if (type === 'column' && !category) return alert('칼럼 카테고리(초등부·중등부·고등부)를 선택해 주세요.');
+    if (type === 'column' && !category) return alert('칼럼 카테고리(초등부·중등부·고등부·공통)를 선택해 주세요.');
 
     const row = {
       type,
