@@ -26,7 +26,8 @@ export default async function ColumnDetailPage({ params }: Props) {
   if (!post) {
     // 카테고리를 바꾼 글은 예전 주소로 들어와도 새 주소로 보낸다 ((type, slug)는 유일)
     const moved = await getPost('column', decodeSlug((await params).slug));
-    if (moved) permanentRedirect(postPath(moved));
+    // Location 헤더에는 한글을 그대로 넣을 수 없어 인코딩한다
+    if (moved) permanentRedirect(encodeURI(postPath(moved)));
   }
   if (!cat) notFound();
   return (
